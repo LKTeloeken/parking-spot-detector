@@ -7,6 +7,7 @@ Defina aqui as coordenadas (x, y, w, h) de cada vaga.
 PARKING_SPOTS = [
     (100,  50, 60, 120),
     (200,  50, 60, 120),
+    (300,  200, 120, 240),
     # ... adicione todas as vagas manualmente após desenhar no primeiro frame
 ]
 
