@@ -1,21 +1,34 @@
 import cv2
 from detector.parking_detector import ParkingDetector
 
-def process_video(video_path, config_path):
-    # carrega background do primeiro frame
+def process_video(video_path, config_path=None):
+    """
+    Captura vídeo, processa frame a frame usando BackgroundSubtractor MOG2
+    e exibe as anotações de vagas.
+    """
     cap = cv2.VideoCapture(video_path)
-    ret, bg_frame = cap.read()
-    if not ret:
-        print("Não foi possível ler o vídeo.")
+    if not cap.isOpened():
+        print(f"Não foi possível abrir o vídeo: {video_path}")
         return
 
     detector = ParkingDetector()
+
+    # Opcional: “aquece” o subtractor com alguns frames iniciais
+    # for _ in range(30):
+    #     ret, frame = cap.read()
+    #     if not ret:
+    #         break
+    #     detector.bg_subtractor.apply(frame)
+
     while True:
         ret, frame = cap.read()
         if not ret:
             break
 
-        detections = detector.detect(frame, bg_frame=bg_frame)
+        # Detecta ocupação e cor dominante
+        detections = detector.detect(frame)
+
+        # Desenha retângulos, labels e círculos de cor
         annotated = detector.draw_annotations(frame, detections)
 
         cv2.imshow("Parking Spot Detector", annotated)

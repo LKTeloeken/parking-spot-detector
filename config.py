@@ -5,10 +5,10 @@ Defina aqui as coordenadas (x, y, w, h) de cada vaga.
 
 # Exemplo de ROIs: cada tupla é (x, y, largura, altura)
 PARKING_SPOTS = [
-    (100,  50, 60, 120),
-    (200,  50, 60, 120),
-    (300,  200, 120, 240),
-    # ... adicione todas as vagas manualmente após desenhar no primeiro frame
+    (10, 140, 125, 300),
+    (200, 140, 200, 300),
+    (450, 140, 200, 300),
+    (700, 140, 150, 285),
 ]
 
 # Threshold para diferenciar vaga livre x ocupada (mudança de pixels)
